@@ -1,6 +1,6 @@
 [ignore]
 <PROJECT_ROOT>/.*?/.*\.test\.jsx
-<PROJECT_ROOT>/node_modules
+<PROJECT_ROOT>/node_modules/^(?!slate-rte).*$
 
 [include]
 

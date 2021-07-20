@@ -1,7 +1,8 @@
 /* @flow */
-import { SlateNode } from 'slate-rte';
+import type { SlateNode } from 'slate-rte';
+import type { SlateContentItem } from '../../SlateTypes';
 
-export const initialSlate = [
+export const initialSlate: Array<SlateNode> = [
   ({
     type: 'background-color',
     color: '#ecf0f1',
@@ -11,7 +12,7 @@ export const initialSlate = [
         text: '',
       },
     ],
-  }: SlateNode),
+  }: SlateContentItem),
   ({
     type: 'center-align',
     children: [
@@ -25,7 +26,7 @@ export const initialSlate = [
         },
       },
     ],
-  }: SlateNode),
+  }: SlateContentItem),
   ({
     type: 'center-align',
     children: [
@@ -39,7 +40,7 @@ export const initialSlate = [
         },
       },
     ],
-  }: SlateNode),
+  }: SlateContentItem),
   ({
     type: 'center-align',
     children: [
@@ -57,7 +58,7 @@ export const initialSlate = [
         },
       },
     ],
-  }: SlateNode),
+  }: SlateContentItem),
 ];
 
 // with data-color attribute
@@ -66,9 +67,15 @@ export const parsedBackground = `<div class="SlateRTE d-flex flex-column justify
 // ensure that colors still work even without data-color attribute
 export const deprecatedParsedBackground = `<div class="SlateRTE d-flex flex-column justify-content-start text-left position-relative read-only p-3" style="background-color:#ecf0f1;font-size:1em"><div data-gramm="false" spellcheck="false" autoCorrect="false" autoCapitalize="false"   style="position:relative;outline:none;white-space:pre-wrap;word-wrap:break-word"><div style="background-color:#ecf0f1"></div><div  style="text-align:center"><span ><span ><span style="font-weight:300"><span style="font-size:1em"><span >DASH DISABILITY </span></span></span></span></span></div><div  style="text-align:center"><span ><span ><span style="font-weight:300"><span style="font-size:1em"><span >&amp; SYMPTOM SCORE</span></span></span></span></span></div><div  style="text-align:center"><span ><span ><span style="color:#2980b9"><span style="font-weight:600"><span style="font-size:1.375em"><span data-type="bold" style="font-weight:700"><span >0.83</span></span></span></span></span></span></span></div></div></div>`;
 
-export const deprecatedSlateResp = [
+export const deprecatedSlateResp: Array<SlateNode> = [
   ({
-    ...initialSlate[0],
+    type: 'background-color',
+    text: null,
+    children: [
+      {
+        text: '',
+      },
+    ],
     color: 'rgb(236, 240, 241)',
   }: SlateNode),
   initialSlate[1],
@@ -90,5 +97,5 @@ export const deprecatedSlateResp = [
         },
       },
     ],
-  }: SlateNode),
+  }: SlateContentItem),
 ];

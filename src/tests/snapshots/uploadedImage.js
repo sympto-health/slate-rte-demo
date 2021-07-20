@@ -1,5 +1,5 @@
 /* @flow */
-import { SlateNode } from 'slate-rte';
+import type { SlateNode } from 'slate-rte';
 
 export const initialSlate = [
   ({
@@ -43,7 +43,6 @@ export const initialSlate = [
       },
       {
         text: '',
-        zavala: 22,
       },
     ],
   }: SlateNode),
