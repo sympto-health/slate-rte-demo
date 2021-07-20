@@ -1,5 +1,5 @@
 /* @flow */
-import React from "react";
+import React from 'react';
 import SlateRTE from 'slate-rte';
 import type { SlateNode } from 'slate-rte';
 import { Card } from 'react-bootstrap';
