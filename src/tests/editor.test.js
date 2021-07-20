@@ -1,4 +1,5 @@
-import { parseAsHTML, deserializeHTMLString } from '../';
+/* @flow */
+import { parseAsHTML, deserializeHTMLString } from 'slate-rte';
 import * as textBackgroundSnapshots from './snapshots/textBackground';
 import * as uploadedImageSnapshots from './snapshots/uploadedImage';
 import * as variableInsert from './snapshots/variableInsert';

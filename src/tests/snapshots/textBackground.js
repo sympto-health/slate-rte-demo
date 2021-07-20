@@ -1,5 +1,5 @@
-import { SlateElementNode } from '../../SlateTypes';
-import { SlateNode } from '../../SlateNode';
+/* @flow */
+import { SlateNode } from 'slate-rte';
 
 export const initialSlate = [
   ({
@@ -11,7 +11,7 @@ export const initialSlate = [
         text: '',
       },
     ],
-  } as SlateElementNode<SlateNode>),
+  }: SlateNode),
   ({
     type: 'center-align',
     children: [
@@ -25,7 +25,7 @@ export const initialSlate = [
         },
       },
     ],
-  } as SlateElementNode<SlateNode>),
+  }: SlateNode),
   ({
     type: 'center-align',
     children: [
@@ -39,7 +39,7 @@ export const initialSlate = [
         },
       },
     ],
-  } as SlateElementNode<SlateNode>),
+  }: SlateNode),
   ({
     type: 'center-align',
     children: [
@@ -57,7 +57,7 @@ export const initialSlate = [
         },
       },
     ],
-  } as SlateElementNode<SlateNode>),
+  }: SlateNode),
 ];
 
 // with data-color attribute
@@ -70,7 +70,7 @@ export const deprecatedSlateResp = [
   ({
     ...initialSlate[0],
     color: 'rgb(236, 240, 241)',
-  } as SlateElementNode<SlateNode>),
+  }: SlateNode),
   initialSlate[1],
   initialSlate[2],
   ({
@@ -90,5 +90,5 @@ export const deprecatedSlateResp = [
         },
       },
     ],
-  } as SlateElementNode<SlateNode>),
+  }: SlateNode),
 ];

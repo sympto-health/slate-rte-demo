@@ -1,5 +1,5 @@
-import { SlateElementNode } from '../../SlateTypes';
-import { SlateNode } from '../../SlateNode';
+/* @flow */
+import { SlateNode } from 'slate-rte';
 
 export const initialSlate = [
   ({
@@ -11,7 +11,7 @@ export const initialSlate = [
       },
     ],
     text: null,
-  } as SlateElementNode<SlateNode>),
+  }: SlateNode),
   ({
     type: 'center-align',
     children: [
@@ -46,7 +46,7 @@ export const initialSlate = [
         zavala: 22,
       },
     ],
-  } as SlateElementNode<SlateNode>),
+  }: SlateNode),
 ];
 
 
