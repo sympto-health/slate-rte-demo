@@ -1,7 +1,7 @@
 /* @flow */
 import React, { useState, useEffect } from 'react';
 import type { SlateNode } from 'slate-rte';
-import SlateRTE, { extractText, deserializeHTMLString, parseAsHTML, getBackgroundColor }  from "slate-rte";
+import SlateRTE, { extractText, deserializeHTMLString, parseAsHTML, getBackgroundColor } from 'slate-rte';
 import { Card } from 'react-bootstrap';
 import { v4 as uuid } from 'uuid';
 import swal from 'sweetalert';
