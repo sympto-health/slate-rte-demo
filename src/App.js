@@ -27,59 +27,15 @@ const fileToBase64 = (file) => (
 const App = () => {
 const [value, setValue] = useState<Array<SlateContentItem>>([
     {
-      "type": "background-color",
-      "color": "#ecf0f1",
-      "children": [
+      type: 'paragraph',
+      children: [
         {
-          "text": "",
-        }
-      ]
-    },
-    {
-      "type": "center-align",
-      "children": [
-        {
-          "text": "DASH DISABILITY ",
-          "font-size": {
-            "value": 16
+          text: '',
+          'font-size': {
+            value: 22,
           },
-          "font-weight": {
-            "value": 300
-          }
-        }
-      ]
-    },
-    {
-      "type": "center-align",
-      "children": [
-        {
-          "text": "& SYMPTOM SCORE",
-          "font-size": {
-            "value": 16
-          },
-          "font-weight": {
-            "value": 300
-          }
-        }
-      ]
-    },
-    {
-      "type": "center-align",
-      "children": [
-        {
-          "bold": true,
-          "text": "0.83",
-          "font-size": {
-            "value": 22
-          },
-          "text-color": {
-            "color": "#2980b9"
-          },
-          "font-weight": {
-            "value": 600
-          }
-        }
-      ]
+        },
+      ],
     }
   ]);
   const [fileMapping, setFileMapping] = useState({});
@@ -227,9 +183,12 @@ const [value, setValue] = useState<Array<SlateContentItem>>([
         {deserializedValue == null && (<div>Loading...</div>)}
       </Card>
       <div className="m-3 text-large text-center font-weight-light">
-        Slate Compared
+        JSON (Converted to HTML and back to Slate)
       </div>
       <div>{JSON.stringify(deserializedValue)}</div>
+      <div className="m-3 text-large text-center font-weight-light">
+        JSON (Directly from Slate)
+      </div>
       <div className="mt-3">{JSON.stringify(value)}</div>
     </div>
   );
