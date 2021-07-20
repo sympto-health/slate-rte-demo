@@ -11,7 +11,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   testURL: 'https://localhost',
   setupFilesAfterEnv: [],
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\](?!(@capacitor)/)'],
+  transformIgnorePatterns: ['/node_modules/', '/slate-rte/'],
   verbose: true,
   transform: {
     '^.+\\.jsx?$': 'babel-jest',

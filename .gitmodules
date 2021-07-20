@@ -1,0 +1,3 @@
+[submodule "slate-rte"]
+	path = slate-rte
+	url = git@github.com:sympto-health/slate-rte.git
