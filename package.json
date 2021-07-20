@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build-slate-rte": "cd slate-rte && npm run build",
-    "setup": "npm install && git submodule init && git submodule update && cd slate-rte && npm install",
+    "setup": "npm install && git submodule init && git submodule update && npm run setup-slate-rte",
+    "setup-slate-rte": "cd slate-rte && npm install",
     "flow": "flow",
     "jest": "jest",
     "flow-typed-install": "flow-typed install"
