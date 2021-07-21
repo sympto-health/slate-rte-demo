@@ -5,6 +5,7 @@ import * as uploadedImageSnapshots from './snapshots/uploadedImage';
 import * as variableInsert from './snapshots/variableInsert';
 import * as basicText from './snapshots/basicText';
 import * as emptyText from './snapshots/emptyText';
+import * as variableWithFormatting from './snapshots/variableWithFormatting';
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
@@ -101,5 +102,20 @@ describe('slate editor', () => {
         return { url: 'a' };
       },
     ))).toEqual(deserializedHTML);
-  })
+  });
+
+  it('variables with formatting', async () => {
+    let counter = 0;
+    expect(await parseAsHTML(
+      variableWithFormatting.initialSlate,
+      { foo: '3' },
+      async () => {
+        counter += 1;
+        return { url: 'a' };
+      },
+    )).toEqual(variableWithFormatting.slateHTML);
+    expect(deserializeHTMLString(variableWithFormatting.slateHTML))
+      .toEqual(variableWithFormatting.initialSlate);
+    expect(counter).toEqual(0);
+  });
 });

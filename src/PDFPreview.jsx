@@ -16,7 +16,18 @@ import Nunito800 from './fonts/NunitoSans_800.ttf';
 import Nunito800Italic from './fonts/NunitoSans_800_italic.ttf';
 import Nunito900 from './fonts/NunitoSans_900.ttf';
 import Nunito900Italic from './fonts/NunitoSans_900_italic.ttf';
-import RobotoMono from './fonts/RobotoMono.ttf';
+
+import Roboto300 from './fonts/RobotoMono_300.ttf';
+import Roboto300Italic from './fonts/RobotoMono_300_italic.ttf';
+import Roboto400 from './fonts/RobotoMono_400.ttf';
+import Roboto400Italic from './fonts/RobotoMono_400_italic.ttf';
+import Roboto500 from './fonts/RobotoMono_500.ttf';
+import Roboto500Italic from './fonts/RobotoMono_500_italic.ttf';
+import Roboto600 from './fonts/RobotoMono_600.ttf';
+import Roboto600Italic from './fonts/RobotoMono_600_italic.ttf';
+import Roboto700 from './fonts/RobotoMono_700.ttf';
+import Roboto700Italic from './fonts/RobotoMono_700_italic.ttf';
+
 
 Font.register({
   family: 'Nunito',
@@ -36,7 +47,18 @@ Font.register({
 
 Font.register({
   family: 'monospace',
-  src: RobotoMono,
+  fonts: [
+    { src: Roboto400 },
+    { src: Roboto400Italic, fontStyle: 'italic' },
+    { src: Roboto300, fontWeight: 300 },
+    { src: Roboto300Italic, fontWeight: 300, fontStyle: 'italic' },
+    { src: Roboto500, fontWeight: 700 },
+    { src: Roboto500Italic, fontWeight: 700, fontStyle: 'italic' },
+    { src: Roboto600, fontWeight: 800 },
+    { src: Roboto600Italic, fontWeight: 800, fontStyle: 'italic' },
+    { src: Roboto700, fontWeight: 900 },
+    { src: Roboto700Italic, fontWeight: 900, fontStyle: 'italic' },
+  ],
 });
 
 const PDFPreview = ({
