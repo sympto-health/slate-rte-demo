@@ -114,9 +114,10 @@ const [value, setValue] = useState<Array<SlateContentItem>>([
             const fileData = await fileToBase64(file);
             const saveFileData = () => {
               const fileId = uuid();
-              setFileMapping({
+              setFileMapping((fileMapping) => ({
+                ...fileMapping,
                 [fileId]: fileData,
-              });
+              }));
               return fileId;
             };
             return uploadFileDirectly
