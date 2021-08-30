@@ -1,5 +1,5 @@
 /* @flow */
-import { parseAsHTML, deserializeHTMLString } from 'slate-rte';
+import { parseAsHTML, extractVariables, deserializeHTMLString } from 'slate-rte';
 import * as textBackgroundSnapshots from './snapshots/textBackground';
 import * as uploadedImageSnapshots from './snapshots/uploadedImage';
 import * as variableInsert from './snapshots/variableInsert';
@@ -26,6 +26,8 @@ describe('slate editor', () => {
     expect(deserializeHTMLString(emptyText.expectedHTML))
       .toEqual(emptyText.initialSlate);
     expect(counter).toEqual(0);
+    expect(extractVariables(emptyText.initialSlate))
+      .toEqual([]);
   });
 
   it('basic text with a background color', async () => {
@@ -41,6 +43,8 @@ describe('slate editor', () => {
     expect(deserializeHTMLString(basicText.expectedHTML))
       .toEqual(basicText.initialSlate);
     expect(counter).toEqual(0);
+        expect(extractVariables(basicText.initialSlate))
+      .toEqual([]);
   });
 
   it('text background with data attributes', async () => {
@@ -56,6 +60,8 @@ describe('slate editor', () => {
     expect(deserializeHTMLString(textBackgroundSnapshots.parsedBackground))
       .toEqual(textBackgroundSnapshots.initialSlate);
     expect(counter).toEqual(0);
+    expect(extractVariables(textBackgroundSnapshots.initialSlate))
+      .toEqual([]);
   });
 
   it('text background w/o data attributes', () => {
@@ -76,6 +82,8 @@ describe('slate editor', () => {
     expect(counter).toEqual(1);
     expect(deserializeHTMLString(uploadedImageSnapshots.slateHTML))
       .toEqual(uploadedImageSnapshots.initialSlate);
+    expect(extractVariables(uploadedImageSnapshots.initialSlate))
+      .toEqual([]);
   });
 
   it('renders variables', async () => {
@@ -91,6 +99,8 @@ describe('slate editor', () => {
     expect(deserializeHTMLString(variableInsert.slateHTML))
       .toEqual(variableInsert.initialSlate);
     expect(counter).toEqual(0);
+    expect(extractVariables(variableInsert.initialSlate))
+      .toEqual(['foo']);
   });
 
   it('returns the same values when double parsed', async () => {
@@ -117,5 +127,7 @@ describe('slate editor', () => {
     expect(deserializeHTMLString(variableWithFormatting.slateHTML))
       .toEqual(variableWithFormatting.initialSlate);
     expect(counter).toEqual(0);
+    expect(extractVariables(variableInsert.initialSlate))
+      .toEqual(['foo']);
   });
 });
