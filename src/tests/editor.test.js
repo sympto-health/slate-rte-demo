@@ -1,5 +1,6 @@
 /* @flow */
 import { parseAsHTML, extractVariables, deserializeHTMLString } from 'slate-rte';
+import extractVariables2 from 'slate-rte/build/extractVariables';
 import * as textBackgroundSnapshots from './snapshots/textBackground';
 import * as uploadedImageSnapshots from './snapshots/uploadedImage';
 import * as variableInsert from './snapshots/variableInsert';
@@ -128,6 +129,8 @@ describe('slate editor', () => {
       .toEqual(variableWithFormatting.initialSlate);
     expect(counter).toEqual(0);
     expect(extractVariables(variableInsert.initialSlate))
+      .toEqual(['foo']);
+    expect(extractVariables2(variableInsert.initialSlate))
       .toEqual(['foo']);
   });
 });
