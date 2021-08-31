@@ -1,6 +1,6 @@
 /* @flow */
 import { parseAsHTML, extractVariables, deserializeHTMLString } from 'slate-rte';
-import extractVariables2 from 'slate-rte/build/extractVariables';
+import { extractVariables as extractVariables2 } from 'slate-rte/build/utils';
 import * as textBackgroundSnapshots from './snapshots/textBackground';
 import * as uploadedImageSnapshots from './snapshots/uploadedImage';
 import * as variableInsert from './snapshots/variableInsert';
