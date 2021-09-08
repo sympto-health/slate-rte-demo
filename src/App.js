@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import type { SlateNode } from 'slate-rte';
 import SlateRTE, { extractText, deserializeHTMLString, parseAsHTML, getBackgroundColor } from 'slate-rte';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { v4 as uuid } from 'uuid';
 import swal from 'sweetalert';
 import _ from 'lodash';
@@ -46,6 +46,7 @@ const [value, setValue] = useState<Array<SlateContentItem>>([
   };
   const onFileLoad = async ({ id }) => ({ url: fileMapping[id] });
 
+  const [showAll, setShowAll] = useState(false);
 
   const [htmlValue, setHTMLValue] = useState(null);
   useEffect(() => {
@@ -65,6 +66,9 @@ const [value, setValue] = useState<Array<SlateContentItem>>([
   })();
   return (
     <div className="bg-light h-100 p-4 pb-5">
+      <Button onClick={() => { setShowAll(!showAll) }}>
+        Toggle All Views
+      </Button>
       <div
         className="pt-1 mx-4 rounded-pill w-25"
         style={{
@@ -139,58 +143,62 @@ const [value, setValue] = useState<Array<SlateContentItem>>([
       <Card className="m-3 shadow-sm">
         <SlateRTE variables={variables} onFileLoad={onFileLoad} mode="Read-Only" value={value} />
       </Card>
-      <div className="m-3 text-large text-center font-weight-light">
-        Editable with Adjusted Font Size
-      </div>
-      <Card className="m-3 shadow-sm">
-        <SlateRTE variables={variables} onFileLoad={onFileLoad} options={{ defaultFontSizePx: 30 }} mode="Edit" value={_.cloneDeep(value)} setValue={setValue} />
-      </Card>
-      <div className="d-flex align-items-center w-100">
-        <div className="w-100">
+      {showAll && (
+        <>
           <div className="m-3 text-large text-center font-weight-light">
-            Minimal Read Only
+            Editable with Adjusted Font Size
           </div>
           <Card className="m-3 shadow-sm">
-            <SlateRTE variables={variables} onFileLoad={onFileLoad} mode="Minimal Read-Only" value={value} />
+            <SlateRTE variables={variables} onFileLoad={onFileLoad} options={{ defaultFontSizePx: 30 }} mode="Edit" value={_.cloneDeep(value)} setValue={setValue} />
           </Card>
-        </div>
-        <div className="w-100">
-          <div className="m-3 text-large text-center font-weight-light">
-            Minimal PDF
+          <div className="d-flex align-items-center w-100">
+            <div className="w-100">
+              <div className="m-3 text-large text-center font-weight-light">
+                Minimal Read Only
+              </div>
+              <Card className="m-3 shadow-sm">
+                <SlateRTE variables={variables} onFileLoad={onFileLoad} mode="Minimal Read-Only" value={value} />
+              </Card>
+            </div>
+            <div className="w-100">
+              <div className="m-3 text-large text-center font-weight-light">
+                Minimal PDF
+              </div>
+              <PDFPreview variables={variables} onFileLoad={onFileLoad} value={value} mode="Minimal PDF" />
+            </div>
           </div>
-          <PDFPreview variables={variables} onFileLoad={onFileLoad} value={value} mode="Minimal PDF" />
-        </div>
-      </div>
-      <div className="d-flex align-items-center w-100">
-        <div className="w-100">
-          <div className="m-3 text-large text-center font-weight-light">
-            PDF
+          <div className="d-flex align-items-center w-100">
+            <div className="w-100">
+              <div className="m-3 text-large text-center font-weight-light">
+                PDF
+              </div>
+              <PDFPreview variables={variables} onFileLoad={onFileLoad} value={value} mode="PDF" />
+            </div>
+            <div className="w-100">
+              <div className="m-3 text-large text-center font-weight-light">
+                PDF (adjusted Font size)
+              </div>
+              <PDFPreview variables={variables} onFileLoad={onFileLoad} defaultFontSize={30} value={value} mode="PDF" />
+            </div>
           </div>
-          <PDFPreview variables={variables} onFileLoad={onFileLoad} value={value} mode="PDF" />
-        </div>
-        <div className="w-100">
           <div className="m-3 text-large text-center font-weight-light">
-            PDF (adjusted Font size)
+            HTML Parse Testing
           </div>
-          <PDFPreview variables={variables} onFileLoad={onFileLoad} defaultFontSize={30} value={value} mode="PDF" />
-        </div>
-      </div>
-      <div className="m-3 text-large text-center font-weight-light">
-        HTML Parse Testing
-      </div>
-      <code className="m-3 card p-4 shadow-sm">{htmlValue}</code>
-      <Card className="m-3 shadow-sm">
-        {deserializedValue && (<SlateRTE variables={variables} onFileLoad={onFileLoad} mode="Read-Only" value={deserializedValue} />)}
-        {deserializedValue == null && (<div>Loading...</div>)}
-      </Card>
-      <div className="m-3 text-large text-center font-weight-light">
-        JSON (Converted to HTML and back to Slate)
-      </div>
-      <div>{JSON.stringify(deserializedValue)}</div>
-      <div className="m-3 text-large text-center font-weight-light">
-        JSON (Directly from Slate)
-      </div>
-      <div className="mt-3">{JSON.stringify(value)}</div>
+          <code className="m-3 card p-4 shadow-sm">{htmlValue}</code>
+          <Card className="m-3 shadow-sm">
+            {deserializedValue && (<SlateRTE variables={variables} onFileLoad={onFileLoad} mode="Read-Only" value={deserializedValue} />)}
+            {deserializedValue == null && (<div>Loading...</div>)}
+          </Card>
+          <div className="m-3 text-large text-center font-weight-light">
+            JSON (Converted to HTML and back to Slate)
+          </div>
+          <div>{JSON.stringify(deserializedValue)}</div>
+          <div className="m-3 text-large text-center font-weight-light">
+            JSON (Directly from Slate)
+          </div>
+          <div className="mt-3">{JSON.stringify(value)}</div>
+        </>
+      )}
     </div>
   );
 }
