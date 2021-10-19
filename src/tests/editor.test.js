@@ -1,5 +1,5 @@
 /* @flow */
-import { parseAsHTML, extractVariables, deserializeHTMLString } from 'slate-rte';
+import { parseAsHTML, extractVariables, extractMinimumFontSize, deserializeHTMLString } from 'slate-rte';
 import { extractVariables as extractVariables2 } from 'slate-rte/build/utils';
 import * as textBackgroundSnapshots from './snapshots/textBackground';
 import * as uploadedImageSnapshots from './snapshots/uploadedImage';
@@ -7,6 +7,7 @@ import * as variableInsert from './snapshots/variableInsert';
 import * as basicText from './snapshots/basicText';
 import * as emptyText from './snapshots/emptyText';
 import * as variableWithFormatting from './snapshots/variableWithFormatting';
+import * as basicTextNoFont from './snapshots/basicTextNoFont';
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
@@ -29,6 +30,8 @@ describe('slate editor', () => {
     expect(counter).toEqual(0);
     expect(extractVariables(emptyText.initialSlate))
       .toEqual([]);
+    expect(extractMinimumFontSize(emptyText.initialSlate))
+      .toEqual(22);
   });
 
   it('basic text with a background color', async () => {
@@ -46,6 +49,8 @@ describe('slate editor', () => {
     expect(counter).toEqual(0);
         expect(extractVariables(basicText.initialSlate))
       .toEqual([]);
+    expect(extractMinimumFontSize(emptyText.initialSlate))
+      .toEqual(22);
   });
 
   it('text background with data attributes', async () => {
@@ -63,6 +68,8 @@ describe('slate editor', () => {
     expect(counter).toEqual(0);
     expect(extractVariables(textBackgroundSnapshots.initialSlate))
       .toEqual([]);
+    expect(extractMinimumFontSize(textBackgroundSnapshots.initialSlate))
+      .toEqual(16); 
   });
 
   it('text background w/o data attributes', () => {
@@ -85,6 +92,31 @@ describe('slate editor', () => {
       .toEqual(uploadedImageSnapshots.initialSlate);
     expect(extractVariables(uploadedImageSnapshots.initialSlate))
       .toEqual([]);
+    expect(extractMinimumFontSize(uploadedImageSnapshots.initialSlate))
+      .toEqual(22); 
+  });
+
+  it('extracts font size even with no font size', async () => {
+    let counter = 0;
+    expect(await parseAsHTML(
+      basicTextNoFont.initialSlate,
+      {},
+      async () => {
+        counter += 1;
+        return { url: 'a' };
+      },
+    )).toEqual(basicTextNoFont.expectedHTML);
+    expect(deserializeHTMLString(basicTextNoFont.expectedHTML))
+      .toEqual(basicTextNoFont.initialSlate);
+    expect(counter).toEqual(0);
+    expect(extractVariables(basicTextNoFont.initialSlate))
+      .toEqual([]);
+    expect(extractMinimumFontSize(basicTextNoFont.initialSlate))
+      .toEqual(16);
+    expect(extractMinimumFontSize(basicTextNoFont.initialSlateWithEmptyText))
+      .toEqual(34);
+    expect(extractMinimumFontSize(basicTextNoFont.initialSlateWithNoEmptyText))
+      .toEqual(16);
   });
 
   it('renders variables', async () => {
@@ -102,6 +134,8 @@ describe('slate editor', () => {
     expect(counter).toEqual(0);
     expect(extractVariables(variableInsert.initialSlate))
       .toEqual(['foo']);
+    expect(extractMinimumFontSize(variableInsert.initialSlate))
+      .toEqual(16);
   });
 
   it('returns the same values when double parsed', async () => {
