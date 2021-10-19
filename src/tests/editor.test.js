@@ -1,5 +1,5 @@
 /* @flow */
-import { parseAsHTML, extractVariables, extractMinimumFontSize, deserializeHTMLString } from 'slate-rte';
+import { parseAsHTML, extractVariables, extractMinMaxFontSize, deserializeHTMLString } from 'slate-rte';
 import { extractVariables as extractVariables2 } from 'slate-rte/build/utils';
 import * as textBackgroundSnapshots from './snapshots/textBackground';
 import * as uploadedImageSnapshots from './snapshots/uploadedImage';
@@ -30,8 +30,8 @@ describe('slate editor', () => {
     expect(counter).toEqual(0);
     expect(extractVariables(emptyText.initialSlate))
       .toEqual([]);
-    expect(extractMinimumFontSize(emptyText.initialSlate))
-      .toEqual(22);
+    expect(extractMinMaxFontSize(emptyText.initialSlate))
+      .toEqual({ maxFontSize: 22, minFontSize: 22 });
   });
 
   it('basic text with a background color', async () => {
@@ -49,8 +49,8 @@ describe('slate editor', () => {
     expect(counter).toEqual(0);
         expect(extractVariables(basicText.initialSlate))
       .toEqual([]);
-    expect(extractMinimumFontSize(emptyText.initialSlate))
-      .toEqual(22);
+    expect(extractMinMaxFontSize(emptyText.initialSlate))
+      .toEqual({ maxFontSize: 22, minFontSize: 22 });
   });
 
   it('text background with data attributes', async () => {
@@ -68,8 +68,8 @@ describe('slate editor', () => {
     expect(counter).toEqual(0);
     expect(extractVariables(textBackgroundSnapshots.initialSlate))
       .toEqual([]);
-    expect(extractMinimumFontSize(textBackgroundSnapshots.initialSlate))
-      .toEqual(16); 
+    expect(extractMinMaxFontSize(textBackgroundSnapshots.initialSlate))
+      .toEqual({ minFontSize: 16, maxFontSize: 22 }); 
   });
 
   it('text background w/o data attributes', () => {
@@ -92,8 +92,8 @@ describe('slate editor', () => {
       .toEqual(uploadedImageSnapshots.initialSlate);
     expect(extractVariables(uploadedImageSnapshots.initialSlate))
       .toEqual([]);
-    expect(extractMinimumFontSize(uploadedImageSnapshots.initialSlate))
-      .toEqual(22); 
+    expect(extractMinMaxFontSize(uploadedImageSnapshots.initialSlate))
+      .toEqual({ maxFontSize: 22, minFontSize: 22 }); 
   });
 
   it('extracts font size even with no font size', async () => {
@@ -111,12 +111,12 @@ describe('slate editor', () => {
     expect(counter).toEqual(0);
     expect(extractVariables(basicTextNoFont.initialSlate))
       .toEqual([]);
-    expect(extractMinimumFontSize(basicTextNoFont.initialSlate))
-      .toEqual(16);
-    expect(extractMinimumFontSize(basicTextNoFont.initialSlateWithEmptyText))
-      .toEqual(34);
-    expect(extractMinimumFontSize(basicTextNoFont.initialSlateWithNoEmptyText))
-      .toEqual(16);
+    expect(extractMinMaxFontSize(basicTextNoFont.initialSlate))
+      .toEqual({ maxFontSize: 16, minFontSize: 16 });
+    expect(extractMinMaxFontSize(basicTextNoFont.initialSlateWithEmptyText))
+      .toEqual({ maxFontSize: 34, minFontSize: 34 });
+    expect(extractMinMaxFontSize(basicTextNoFont.initialSlateWithNoEmptyText))
+      .toEqual({ maxFontSize: 34, minFontSize: 16 });
   });
 
   it('renders variables', async () => {
@@ -134,8 +134,8 @@ describe('slate editor', () => {
     expect(counter).toEqual(0);
     expect(extractVariables(variableInsert.initialSlate))
       .toEqual(['foo']);
-    expect(extractMinimumFontSize(variableInsert.initialSlate))
-      .toEqual(16);
+    expect(extractMinMaxFontSize(variableInsert.initialSlate))
+      .toEqual({ maxFontSize: 22, minFontSize: 16 });
   });
 
   it('returns the same values when double parsed', async () => {
