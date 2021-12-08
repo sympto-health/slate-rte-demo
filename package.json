@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-pdf/renderer": "^2.0.13",
+    "@react-pdf/renderer": "^2.0.15",
     "bootstrap": "^4.5.0",
     "lodash": "^4.17.21",
     "react": "^16.14.0",
