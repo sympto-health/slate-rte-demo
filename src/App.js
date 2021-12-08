@@ -24,23 +24,128 @@ const fileToBase64 = (file) => (
     reader.readAsDataURL(file);
   }));
 
-const App = () => {
-const [value, setValue] = useState<Array<SlateContentItem>>([
-    {
-      type: 'paragraph',
-      children: [
-        {
-          text: '',
-          'font-size': {
-            value: 22,
-          },
+const SAMPLE_DATA = [
+  {
+    text: null,
+    type: 'background-color',
+    color: '#34495e',
+    children: [
+      {
+        text: '',
+      },
+    ],
+  },
+  {
+    type: 'center-align',
+    children: [
+      {
+        bold: true,
+        text: 'QDASH SCORE',
+        'font-size': {
+          value: 18,
         },
-      ],
-    }
-  ]);
+        'text-color': {
+          color: '#ffffff',
+        },
+        'font-weight': {
+          value: 300,
+        },
+      },
+    ],
+  },
+  {
+    type: 'center-align',
+    children: [
+      {
+        bold: true,
+        text: '',
+        'font-size': {
+          value: 22,
+        },
+        'text-color': {
+          color: '#ffffff',
+        },
+        'font-weight': {
+          value: 300,
+        },
+      },
+      {
+        text: null,
+        type: 'variable',
+        children: [
+          {
+            bold: true,
+            text: '',
+            variable: {
+              variableName: 'qdash_score',
+            },
+            'font-size': {
+              value: 22,
+            },
+            'text-color': {
+              color: '#ffffff',
+            },
+            'font-weight': {
+              value: 300,
+            },
+          },
+        ],
+        variableName: 'qdash_score',
+      },
+      {
+        text: '',
+      },
+    ],
+  },
+  {
+    type: 'center-align',
+    children: [
+      {
+        text: '[0 till 100]',
+        'font-size': {
+          value: 16,
+        },
+        'text-color': {
+          color: '#ffffff',
+        },
+      },
+    ],
+  },
+  {
+    type: 'center-align',
+    children: [
+      {
+        text: '',
+        'font-size': {
+          value: 16,
+        },
+        'text-color': {
+          color: '#ffffff',
+        },
+      },
+    ],
+  },
+  {
+    type: 'center-align',
+    children: [
+      {
+        text: 'The higher the score, the worse the QoL',
+        'font-size': {
+          value: 14,
+        },
+        'text-color': {
+          color: '#ffffff',
+        },
+      },
+    ],
+  },
+];
+
+const App = () => {
+  const [value, setValue] = useState<Array<SlateContentItem>>(SAMPLE_DATA);
   const [fileMapping, setFileMapping] = useState({});
   const variables = {
-    'variableA': '2',
+    'qdash_score': '2',
     'foo': '3',
     'bar': '4',
   };
