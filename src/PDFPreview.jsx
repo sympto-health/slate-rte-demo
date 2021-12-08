@@ -74,14 +74,24 @@ const PDFPreview = ({
     <PDFViewer>
       <Document>
         <Page style={{ fontFamily: 'Nunito' }}>
-          <View style={{ padding: 10 }}>
-            <SlateRTE
-              variables={variables}
-              onFileLoad={onFileLoad}
-              options={defaultFontSize ? { defaultFontSizePx: defaultFontSize || 20 } : null}
-              mode={mode}
-              value={value}
-            />
+          <View>
+            <View style={{ padding: 5 }}>
+              <View
+                style={{
+                  fontFamily: 'Nunito',
+                  paddingHorizontal: 10,
+                  paddingVertical: 15,
+                }}
+              >
+                <SlateRTE
+                  variables={variables}
+                  onFileLoad={onFileLoad}
+                  options={defaultFontSize ? { defaultFontSizePx: defaultFontSize || 20 } : null}
+                  mode={mode}
+                  value={value}
+                />
+              </View>
+            </View>
           </View>
         </Page>
       </Document>
