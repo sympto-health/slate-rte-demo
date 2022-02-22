@@ -169,6 +169,10 @@ const App = () => {
       return [];
     }
   })();
+  console.log({
+    text: extractText(value, variables),
+    textNewLines: extractText(value, variables, true),
+  })
   return (
     <div className="bg-light h-100 p-4 pb-5">
       <Button onClick={() => { setShowAll(!showAll) }}>
