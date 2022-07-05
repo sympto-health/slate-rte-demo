@@ -52,6 +52,7 @@ declare type LinkNode = ({
 declare type ImageVideoNode = ({
   type: 'image' | 'video',
   url: string,
+  fileData: null,
   ...BaseNode,
 } | {
   type: 'image' | 'video',
