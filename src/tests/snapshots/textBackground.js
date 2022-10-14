@@ -1,6 +1,5 @@
 /* @flow */
 import type { SlateNode } from 'slate-rte';
-import type { SlateContentItem } from '../../SlateTypes';
 import { slateHeader, slateFooter } from './slateFixtures';
 
 export const initialSlate: Array<SlateNode> = [
@@ -12,7 +11,8 @@ export const initialSlate: Array<SlateNode> = [
         text: '',
       },
     ],
-  }: SlateContentItem),
+    borderColor: null,
+  }: SlateNode),
   ({
     type: 'center-align',
     children: [
@@ -26,7 +26,7 @@ export const initialSlate: Array<SlateNode> = [
         },
       },
     ],
-  }: SlateContentItem),
+  }: SlateNode),
   ({
     type: 'center-align',
     children: [
@@ -40,7 +40,7 @@ export const initialSlate: Array<SlateNode> = [
         },
       },
     ],
-  }: SlateContentItem),
+  }: SlateNode),
   ({
     type: 'center-align',
     children: [
@@ -58,7 +58,7 @@ export const initialSlate: Array<SlateNode> = [
         },
       },
     ],
-  }: SlateContentItem),
+  }: SlateNode),
 ];
 
 // with data-color attribute
@@ -75,6 +75,7 @@ export const deprecatedSlateResp: Array<SlateNode> = [
         text: '',
       },
     ],
+    borderColor: null,
     color: 'rgb(236, 240, 241)',
   }: SlateNode),
   initialSlate[1],
@@ -96,5 +97,5 @@ export const deprecatedSlateResp: Array<SlateNode> = [
         },
       },
     ],
-  }: SlateContentItem),
+  }: SlateNode),
 ];

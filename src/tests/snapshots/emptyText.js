@@ -14,7 +14,7 @@ export const initialSlate: Array<SlateNode> = [
         },
       },
     ],
-  }: SlateContentItem),
+  }: SlateNode),
 ];
 
 export const expectedHTML = `${slateHeader()}<div style="padding-bottom:1rem" ><span ><span ><span style="font-size:1.375em"><span  >﻿<br/></span></span></span></span></div>${slateFooter}`;

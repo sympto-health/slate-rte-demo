@@ -28,6 +28,7 @@ const SAMPLE_DATA = [
   {
     text: null,
     type: 'background-color',
+    borderColor: null,
     color: '#34495e',
     children: [
       {
@@ -142,7 +143,7 @@ const SAMPLE_DATA = [
 ];
 
 const App = () => {
-  const [value, setValue] = useState<Array<SlateContentItem>>(SAMPLE_DATA);
+  const [value, setValue] = useState<Array<SlateNode>>(SAMPLE_DATA);
   const [fileMapping, setFileMapping] = useState({});
   const variables = {
     'qdash_score': '2',

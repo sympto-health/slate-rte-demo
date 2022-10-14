@@ -11,6 +11,7 @@ export const initialSlate = [
         text: '',
       },
     ],
+    borderColor: null,
   }: SlateNode),
   ({
     type: 'center-align',
